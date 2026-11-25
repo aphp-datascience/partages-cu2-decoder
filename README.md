@@ -24,9 +24,6 @@ Hugging Face Hub:
 - **Fast:** one short generation per stay; on one A100, about 950 synthetic stays per minute.
 - **Hardware:** one GPU with ≥ 24 GB of memory.
 - **Can be fine-tuned on your own coded stays** with the script of this repository (one GPU).
-- **Two CU2 models code the DP from the text:** this decoder, and the
-  [CU2 agent](https://github.com/aphp-datascience/partages-cu2-agent), slower, which searches the
-  ICD-10 and the MCO guide with tools, also gives the DR and justifies its choice.
 - **Mostly trained on surgical stays**, but covers the whole ICD-10 (see
   [Limitations](#limitations)).
 
@@ -129,9 +126,7 @@ synonyms, `decoder/icd10.py`); this concerns very few stays.
 
 ### Training data
 
-No real patient data was used for training. The model learns from the training data of the
-[CU2 encoder](https://github.com/aphp-datascience/partages-cu2-encoder), the target being the DP of
-the stay:
+No real patient data was used for training. The target is the DP of the stay:
 
 | Source | Stays | What it is | Codes used for training |
 |---|---:|---|---|
@@ -183,8 +178,6 @@ Scope: **ICD-10** = all stays, **surgery** = stays coded in the surgical scope o
 
 - **Z codes:** when the DP is a Z code (sessions, follow-up…), the decoder finds it about as often
   as other DPs: 46.1 % exact (76 stays, flattened).
-- **Compared with the other CU2 models** on the same 310 flattened stays (exact code): encoder
-  41.0 %, decoder 43.2 %, agent 45.5 %. The differences are within the uncertainty of such a set.
 - **Small sets:** 95 % confidence interval about ±7 points on ~200 stays, ±13 points on ~50.
 - **The reference coding is not certain either:** even reviewed PMSI coding contains errors, and
   some stays can legitimately be coded in more than one way. The **agreement** view, where
