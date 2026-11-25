@@ -32,7 +32,7 @@ information departments, DIM).
   coding without validation; no associated diagnoses (DAS), no related diagnosis (DR).
 - **Runs locally** with [vLLM](https://github.com/vllm-project/vllm): no text leaves your
   infrastructure. Trained without any real patient data.
-- **Fast:** one short generation per stay; on one A100, about 950 synthetic stays per minute.
+- **Fast:** one short generation per stay; on one A100, about 700 synthetic stays per minute (948 stays in 78 s).
 - **Hardware:** one GPU with ≥ 24 GB of memory.
 - **Can be fine-tuned on your own coded stays** with the script of the repository below.
 - **Mostly trained on surgical stays**, but covers the whole ICD-10 (see Limitations).
